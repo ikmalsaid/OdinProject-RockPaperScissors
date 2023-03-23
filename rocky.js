@@ -1,38 +1,52 @@
-// set variables
-let userChoice;
-let userChoiceLower;
-let cpuItems;
-let cpuChoice;
+// Function to generate computer choice
+function getComputerChoice() {
+  const choices = ['rock', 'paper', 'scissors'];
+  return choices[Math.floor(Math.random() * 3)];
+}
 
-// while true, convert choice to lowercase, compare value and break loop
-while (true) {
-  userChoice = prompt('Enter rock, paper, or scissors:');
-  userChoiceLower = userChoice.toLowerCase();
-  if (userChoiceLower === 'rock' || userChoiceLower === 'paper' || userChoiceLower === 'scissors') {
-    break;
+// Function to play a single round
+function playRound(playerSelection, computerSelection) {
+  playerSelection = playerSelection.toLowerCase();
+  if (playerSelection === computerSelection) {
+    return `It's a tie! You both chose ${playerSelection}.`;
+  } else if (
+    (playerSelection === 'rock' && computerSelection === 'scissors') ||
+    (playerSelection === 'paper' && computerSelection === 'rock') ||
+    (playerSelection === 'scissors' && computerSelection === 'paper')
+  ) {
+    return `You win! ${playerSelection} beats ${computerSelection}.`;
+  } else {
+    return `You lose! ${computerSelection} beats ${playerSelection}.`;
   }
 }
 
-// randomness processor
-function getCpuChoice(items) { return items[Math.floor(Math.random()*items.length)]; }
+// Main game function
+function game() {
+  let playerScore = 0;
+  let computerScore = 0;
 
-// array of cpu choices
-cpuItems = ['rock', 'paper', 'scissors'];
+  for (let i = 0; i < 5; i++) {
+    const playerSelection = prompt(`Round ${i + 1} - Choose rock, paper or scissors`);
+    const computerSelection = getComputerChoice();
+    const roundResult = playRound(playerSelection, computerSelection);
+    console.log(roundResult);
 
-// after break, display values via console
-console.log('User entered: ', userChoiceLower);
-console.log('CPU entered: ', getCpuChoice(cpuItems));
+    if (roundResult.startsWith('You win')) {
+      playerScore++;
+    } else if (roundResult.startsWith('You lose')) {
+      computerScore++;
+    }
+  }
 
-// game mechanics
-
-function gameResult(player, cpu){
-	if (player === 'rock' || player === 'scissors' && cpu === 'paper') { return 'player wins!'; }
-	else if (player === 'paper' && cpu === 'rock' || cpu === 'scissors') { return 'cpu wins!'; }
-	else { return 'both tied!'; }
+  console.log('Game over!');
+  if (playerScore > computerScore) {
+    console.log(`You won the game! Final score: ${playerScore} - ${computerScore}`);
+  } else if (playerScore < computerScore) {
+    console.log(`You lost the game! Final score: ${playerScore} - ${computerScore}`);
+  } else {
+    console.log(`It's a tie game! Final score: ${playerScore} - ${computerScore}`);
+  }
 }
 
-// game result
-console.log('Result: ', gameResult(userChoiceLower, getCpuChoice(cpuItems)));
-
-
-
+// Call the game function to play the game
+game();
