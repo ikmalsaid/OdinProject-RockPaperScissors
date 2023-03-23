@@ -6,6 +6,11 @@ function getComputerChoice() {
 
 // Function to play a single round
 function playRound(playerSelection, computerSelection) {
+  // Check if player selection is valid
+  if (!['rock', 'paper', 'scissors'].includes(playerSelection.toLowerCase())) {
+    return "Invalid input. Please choose 'rock', 'paper', or 'scissors'.";
+  }
+
   playerSelection = playerSelection.toLowerCase();
   if (playerSelection === computerSelection) {
     return `It's a tie! You both chose ${playerSelection}.`;
