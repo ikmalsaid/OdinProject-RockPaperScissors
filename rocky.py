@@ -1,5 +1,8 @@
 import random
 choices = ['rock', 'paper', 'scissors']
+player_score = 0
+cpu_score = 0
+rounds = 5
 
 def get_cpu_choices():
     return choices[int(random.randrange(0,3))]
