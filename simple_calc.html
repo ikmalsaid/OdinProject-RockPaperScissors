@@ -5,11 +5,77 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Calculator</title>
+    <style>
+        .calc-header{
+            color: blue;
+            font-family: 'Tahoma';
+            text-align: center;
+        }
+        
+        .calc-header p {
+            margin-bottom: 2em;
+          }
+          
+
+        .calc-header p.sub-header{
+            color: black;
+            font-weight: bold;
+        }
+        
+        .calc-body{
+            flex: auto;
+        }
+        
+        .calc-body button {
+            background-color: #f2f2f2;
+            border: 1px solid #ccc;
+            width: 71px;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .calc-body button:hover {
+            background-color: #ccc;
+        }
+        
+        .calc-screen {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 24px;
+            padding: 10px;
+            text-align: right;
+            color: black;
+          }
+          
+          .calc-screen.error {
+            color: red;
+          }          
+        
+        .calc-body > div {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .calc-row-5 button {
+            background-color: #ff6666;
+            color: #fff;
+            width: 316px;
+        }
+        
+        .calc-row-5 button:hover {
+            background-color: #ff9999;
+        }
+        
+    </style>
 </head>
 <body>
     <div class="calc-header">
         <h1>Simple Calculator</h1>
-        <p>A simple calculator with buttons!</p>
+        <p class="sub-header">A simple calculator with buttons!</p>
     </div>
     <div class="calc-body">
         <div class="calc-hud">
@@ -75,6 +141,7 @@ function calculate() {
     } catch (error) {
         screen.value = 'Error';
         calculation = '';
+        screen.classList.add('error');
     }
 }
 
