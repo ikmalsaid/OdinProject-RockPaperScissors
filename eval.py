@@ -1,0 +1,1 @@
+ask = input('Enter your formulae: '); print(eval(str(ask)))
