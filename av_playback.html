@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Audio/Video Stream Player</title>
+</head>
+<body>
+  <h1>Audio/Video Stream Player</h1>
+  <div>
+    <h2>Audio Player</h2>
+    <audio id="audioPlayer" controls>
+      <source id="audioSource" src="" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+    <div>
+      <input type="text" id="audioInput" placeholder="Enter audio stream URL">
+      <button onclick="playAudioStream()">Play Audio Stream</button>
+    </div>
+  </div>
+  <div>
+    <h2>Video Player</h2>
+    <video id="videoPlayer" controls>
+      <source id="videoSource" src="" type="video/mp4">
+      Your browser does not support the video element.
+    </video>
+    <div>
+      <input type="text" id="videoInput" placeholder="Enter video stream URL">
+      <button onclick="playVideoStream()">Play Video Stream</button>
+    </div>
+  </div>
+  <script>
+    const audioPlayer = document.getElementById('audioPlayer');
+    const audioSource = document.getElementById('audioSource');
+    const audioInput = document.getElementById('audioInput');
+    const videoPlayer = document.getElementById('videoPlayer');
+    const videoSource = document.getElementById('videoSource');
+    const videoInput = document.getElementById('videoInput');
+    
+    // Update audio source and play
+    function playAudioStream() {
+      const url = audioInput.value;
+      audioSource.src = url;
+      audioPlayer.load();
+      audioPlayer.addEventListener('loadedmetadata', function() {
+        audioPlayer.play();
+      });
+    }
+    
+    // Update video source and play
+    function playVideoStream() {
+      const url = videoInput.value;
+      videoSource.src = url;
+      videoPlayer.load();
+      videoPlayer.addEventListener('loadedmetadata', function() {
+        videoPlayer.play();
+      });
+    }
+    
+  </script>
+</body>
+</html>
